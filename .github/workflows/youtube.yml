@@ -1,25 +1,26 @@
-name: YouTube Automation Bot
+name: Run bot
 
 on:
   workflow_dispatch:
 
 jobs:
-  upload:
+  run:
     runs-on: ubuntu-latest
 
+    env:
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Run bot
-        run: |
-          python main.py
+        run: python main.py
+
