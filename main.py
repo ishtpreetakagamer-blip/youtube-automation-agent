@@ -18,7 +18,7 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
 
 # Run OAuth flow
 flow = InstalledAppFlow.from_client_secrets_file("client_secret.json", SCOPES)
-credentials = flow.run_console()  # Will show Google auth link in Actions logs
+credentials = flow.run_local_server(port=0)  # Will show Google auth link in Actions logs
 
 # Build YouTube API service
 youtube = build("youtube", "v3", credentials=credentials)
